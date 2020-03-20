@@ -282,8 +282,12 @@ function getModelYears(inventory) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(inventory, id) {
+  for(var i=0; i<inventory.length; i++){
+    if(inventory[i].id === id){
+      return `This is a ${inventory[i].car_make} ${inventory[i].car_model}`;
+    }
+  }
 }
 
 /**
@@ -300,8 +304,15 @@ function getCarInfoById(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, year) {
+  const array = [];
+  var j = 0;
+  for(var i=0; i<inventory.length; i++){
+    if(inventory[i].car_year <= year){
+      array[j++] = inventory[i];
+    }
+  }
+  return array;
 }
 
 /**
@@ -317,8 +328,15 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(inventory) {
+  const array = [];
+  var j = 0;
+  for(var i=0; i<inventory.length; i++){
+    if(inventory[i].car_make === "Mercedes-Benz"|| inventory[i].car_make === "Audi"|| inventory[i].car_make === "Volkswagen"|| inventory[i].car_make === "BMW"){
+      array[j++] = inventory[i];
+    }
+  }
+  return array;
 }
 
 /**
@@ -334,8 +352,14 @@ function getGermanCars(/* code here */) {
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
-  /* code here */
+function carMaker(odometer) {
+  this.odometer= odometer;
+  this.drive = function(distance){
+    this.odometer += distance;
+    var updates = this.odometer;
+    return updates;
+  };
+  return this;
 }
 
 /// ////// END OF CHALLENGE /////////
